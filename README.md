@@ -9,6 +9,7 @@
 - [JSX](#jsx)
 - [Class Components](#class-components)
 - [Life Cycle](#life-cycle)
+- [Hooks](#hooks)
 
   
 --- 
@@ -337,5 +338,20 @@ export default Counter;
 ### Unmounting Phase:
 - When a component is removed from the DOM, the following method is called:
 - componentWillUnmount(): Perform cleanup tasks (e.g., unsubscribing, clearing intervals) here.
+
+
+---
+
+
+
+
+
+
+
+
+
+
+## Hooks:
+
 
 
