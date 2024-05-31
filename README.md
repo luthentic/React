@@ -5,21 +5,134 @@
 
 ## 🚩 Table of Contents
 
-- [Vite](#vite)
+- [WHY React](#why-react)
+- [DOM](#dom)
+- [Render](#render)
+- [CLI Tools](#cli-tools) 
+  1. [Vite](#vite)
 - [JSX](#jsx)
 - [Class Components](#class-components)
 - [Life Cycle](#life-cycle)
 - [Hooks](#hooks)
+  1. useState
+  2. 
 
   
 --- 
 
-run _npx create-react-app my-app_ it automatically installs the latest version of Create React App.
+## WHY React:
 
-If you've previously installed create-react-app globally via _npm install -g create-react-app_
+### Ease and Reusability of Components: 
+React’s component-based structure is more than just a trendy term; it’s a revolutionary approach. Think of building your user interface like assembling lego blocks (components) that can be reused throughout your application. This not only streamlines your code and makes it more manageable, but it also significantly reduces development time. Achieving this level of modularity and reusability with vanilla JavaScript requires much more groundwork and discipline.
+
+### Simplified State Management:
+React streamlines state management in a way that vanilla JavaScript can’t compete with out of the box. The simplicity with which you can distribute data through your application using props or state management libraries (like Redux or Context API) is remarkable. This results in more predictable and easier-to-debug code, a crucial factor in the success of any project.
+
+### A Thriving Ecosystem:
+The React ecosystem is extensive and continually expanding. From routing solutions like React Router to server-side rendering with Next.js, the tools and libraries available to React developers are plentiful. This ecosystem not only speeds up development but also ensures that you’re building on top of best practices vetted by the community.
+
+### Performance Optimization: 
+React’s virtual DOM is engineered for performance. It reduces direct manipulation of the DOM, which can be a bottleneck in complex applications. This leads to faster rendering and a smoother user experience, even as your app increases in complexity.
+
+### Robust Community Support: 
+Encountering a problem? There’s a high likelihood that someone else has faced it and shared a solution. The React community is one of the most active and supportive, offering a wealth of resources, from tutorials and forums to ready-to-use components.
 
 
-## Vite
+
+---
+
+
+
+## DOM:
+
+### What is the DOM?
+
+The Document Object Model (DOM) is a programming interface for web documents. It represents the page so that programs can change the document structure, style, and content. The DOM represents the document as nodes and objects; that way, programming languages can interact with the page.
+
+The DOM is not part of the JavaScript language, but is instead a Web API used to build websites. JavaScript can also be used in other contexts. For example, Node.js runs JavaScript programs on a computer, but provides a different set of APIs, and the DOM API is not a core part of the Node.js runtime.
+
+```js
+const paragraphs = document.querySelectorAll("p");
+// paragraphs[0] is the first <p> element
+// paragraphs[1] is the second <p> element, etc.
+alert(paragraphs[0].nodeName);
+```
+
+### Disadvantages of real DOM :
+Every time the DOM gets updated, the updated element and its children have to be rendered again to update the UI of our page. For this, each time there is a component update, the DOM needs to be updated and the UI components have to be re-rendered.
+
+
+
+### What is the Virtual DOM?
+
+The virtual DOM (VDOM) is a programming concept where an ideal, or “virtual”, representation of a UI is kept in memory and synced with the “real” DOM by a library such as ReactDOM. This process is called reconciliation.
+
+When anything new is added to the application, a virtual DOM is created and it is represented as a tree. Each element in the application is a node in this tree. So, whenever there is a change in the state of any element, a new Virtual DOM tree is created. This new Virtual DOM tree is then compared with the previous Virtual DOM tree and make a note of the changes. After this, it finds the best possible ways to make these changes to the real DOM. Now only the updated elements will get rendered on the page again.
+
+
+
+React uses the virtual DOM as a strategy to compute minimal DOM operations when re-rendering the UI. It is not in rivalry with or faster than the real DOM.
+
+The virtual DOM provides a mechanism that abstracts manual DOM manipulations away from the developer, helping us to write more predictable code. It does so by comparing two render trees to determine exactly what has changed, only updating what is necessary on the actual DOM.
+
+Like React, Vue also employs this strategy. However, Svelte proposes another approach to ensure that an application is optimized, compiling all components into independent, tiny JavaScript modules, making the script very light and fast to run.
+
+I hope you enjoyed reading this article. Be sure to share your thoughts in the comment section if you have questions or contributions.
+
+
+
+
+
+
+---
+
+
+
+## Render:
+
+Imagine that your components are cooks in the kitchen, assembling tasty dishes from ingredients. In this scenario, React is the waiter who puts in requests from customers and brings them their orders. This process of requesting and serving UI has three steps:
+
+- Triggering a render (delivering the guest’s order to the kitchen)
+- Rendering the component (preparing the order in the kitchen)
+- Committing to the DOM (placing the order on the table)
+
+### Step 1: Trigger a render 
+There are two reasons for a component to render:
+
+- It’s the component’s initial render.
+- The component’s (or one of its ancestors’) state has been updated.
+
+### Step 2: React renders your components 
+After you trigger a render, React calls your components to figure out what to display on screen. “Rendering” is React calling your components.
+
+- On initial render, React will call the root component.
+- For subsequent renders, React will call the function component whose state update triggered the render.
+
+### Step 3: React commits changes to the DOM 
+After rendering (calling) your components, React will modify the DOM.
+
+- For the initial render, React will use the appendChild() DOM API to put all the DOM nodes it has created on screen.
+- For re-renders, React will apply the minimal necessary operations (calculated while rendering!) to make the DOM match the latest rendering output.
+
+
+### Any screen update in a React app happens in three steps:
+1. Trigger
+2. Render
+3. Commit
+- You can use Strict Mode to find mistakes in your components
+- React does not touch the DOM if the rendering result is the same as last time
+
+
+
+
+
+---
+
+
+
+
+
+## Vite:
 
 ### What's Vite:
 Vite.js is a build tool that is designed to be fast and lightweight. It uses native ES modules and a native development server to provide a fast and seamless development experience. Vite. js also supports code splitting and hot reloading.
@@ -56,6 +169,8 @@ Vite.js is a build tool that is designed to be fast and lightweight. It uses nat
 
 - A dev server that provides rich feature enhancements over native ES modules, for example extremely fast Hot Module Replacement (HMR).
 - A build command that bundles your code with Rollup, pre-configured to output highly optimized static assets for production.
+
+
 
 ---
 
@@ -352,6 +467,146 @@ export default Counter;
 
 
 ## Hooks:
+
+### Built-in React Hooks:
+
+- **State Hooks **
+  State lets a component “remember” information like user input. For example, a form component can use state to store the input value, while an image gallery component can use state to store the selected image index.
+
+- useState declares a state variable that you can update directly.
+- useReducer declares a state variable with the update logic inside a reducer function.
+
+### useState:
+useState is a React Hook that lets you add a state variable to your component.
+
+```js
+const [state, setState] = useState(initialState)
+```
+
+### Call useState at the top level of your component to declare a state variable.
+
+```js
+import { useState } from 'react';
+
+function MyComponent() {
+  const [age, setAge] = useState(28);
+  const [name, setName] = useState('Taylor');
+  const [todos, setTodos] = useState(() => createTodos());
+  // ...
+```
+
+The convention is to name state variables like [something, setSomething] using array destructuring.
+
+### Caveats:
+- useState is a Hook, so you can only call it at the top level of your component or your own Hooks. You can’t call it inside loops or conditions. If you need that, extract a new component and move the state into it.
+  
+```js
+import React, { useState } from 'react';
+
+function Counter({initialCount}) {
+const [count, setCount] = useState(initialCount);
+return (
+  <div>
+    <p>You clicked {count} times</p>
+    <button onClick={() => setCount(count + 1)}>
+      Click me
+    </button>
+  </div>
+);
+}
+
+function MyComponent() {
+const items = [1, 2, 3, 4, 5];
+return (
+  <div>
+    {items.map((item, index) => (
+      <Counter key={index} initialCount={item} />
+    ))}
+  </div>
+);
+}
+```
+
+- In Strict Mode, React will call your initializer function twice in order to help you find accidental impurities. This is development-only behavior and does not affect production. If your initializer function is pure (as it should be), this should not affect the behavior. The result from one of the calls will be ignored.
+
+
+### Age will only be 43 rather than 45! This is because calling the set function does not update the age state variable in the already running code
+
+```js
+function handleClick() {
+setAge(age + 1); // setAge(42 + 1)
+setAge(age + 1); // setAge(42 + 1)
+setAge(age + 1); // setAge(42 + 1)
+}
+```
+
+###  (Solution) pass an updater function to setAge instead of the next state
+
+```js
+function handleClick() {
+  setAge(a => a + 1); // setAge(42 => 43)
+  setAge(a => a + 1); // setAge(43 => 44)
+  setAge(a => a + 1); // setAge(44 => 45)
+}
+```
+
+In React, state is considered read-only, so you should replace it rather than mutate your existing objects. For example, if you have a form object in state, don’t mutate it:
+
+```js
+// 🚩 Don't mutate an object in state like this:
+form.firstName = 'Taylor';
+```
+
+replace the whole object by creating a new one:
+
+```js
+// ✅ Replace state with a new object
+setForm({
+  ...form,
+  firstName: 'Taylor'
+});
+```
+
+
+### Resetting state with a key:
+
+You can reset a component’s state by passing a different key to a component. In this example, the Reset button changes the version state variable, which we pass as a key to the Form. When the key changes, React re-creates the Form component (and all of its children) from scratch, so its state gets reset.
+
+```js
+import { useState } from 'react';
+
+export default function App() {
+  const [version, setVersion] = useState(0);
+
+  function handleReset() {
+    setVersion(version + 1);
+  }
+
+  return (
+    <>
+      <button onClick={handleReset}>Reset</button>
+      <Form key={version} />
+    </>
+  );
+}
+
+function Form() {
+  const [name, setName] = useState('Taylor');
+
+  return (
+    <>
+      <input
+        value={name}
+        onChange={e => setName(e.target.value)}
+      />
+      <p>Hello, {name}.</p>
+    </>
+  );
+}
+```
+
+
+
 
 
 
