@@ -15,7 +15,7 @@
 - [Life Cycle](#life-cycle)
 - [Hooks](#hooks)
   1. useState
-  2. 
+  2. useReducer
 
   
 --- 
