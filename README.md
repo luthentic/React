@@ -605,6 +605,29 @@ function Form() {
 }
 ```
 
+### useReducer
+
+
+
+
+
+- **Context Hooks**
+
+  
+- **Ref Hooks**
+
+
+- **Effect Hooks**
+
+
+- **Performance Hooks**
+
+
+- **Other Hooks**  
+   
+
+
+
 
 
 
