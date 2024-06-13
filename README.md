@@ -14,8 +14,13 @@
 - [Class Components](#class-components)
 - [Life Cycle](#life-cycle)
 - [Hooks](#hooks)
-  1. useState
-  2. useReducer
+  - State Hooks
+  - Context Hooks
+  - Ref Hooks
+  - Effect Hooks
+  - Performance Hooks
+  - Other Hooks 
+  - Your own Hooks
 
   
 --- 
