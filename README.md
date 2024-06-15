@@ -478,140 +478,23 @@ export default Counter;
 - **State Hooks **
   State lets a component “remember” information like user input. For example, a form component can use state to store the input value, while an image gallery component can use state to store the selected image index.
 
-- useState declares a state variable that you can update directly.
-- useReducer declares a state variable with the update logic inside a reducer function.
+ **useState declares a state variable that you can update directly.**
+ 
+ **useReducer declares a state variable with the update logic inside a reducer function.**
+ 
+**choosing between useState and useReducer:**
+
+We recommend using a reducer if you often encounter bugs due to incorrect state updates in some component, and want to introduce more structure to its code. You don’t have to use reducers for everything: feel free to mix and match! You can even useState and useReducer in the same component.
+
+- https://react.dev/learn/extracting-state-logic-into-a-reducer#comparing-usestate-and-usereducer
 
 ### useState:
-useState is a React Hook that lets you add a state variable to your component.
-
-```js
-const [state, setState] = useState(initialState)
-```
-
-### Call useState at the top level of your component to declare a state variable.
-
-```js
-import { useState } from 'react';
-
-function MyComponent() {
-  const [age, setAge] = useState(28);
-  const [name, setName] = useState('Taylor');
-  const [todos, setTodos] = useState(() => createTodos());
-  // ...
-```
-
-The convention is to name state variables like [something, setSomething] using array destructuring.
-
-### Caveats:
-- useState is a Hook, so you can only call it at the top level of your component or your own Hooks. You can’t call it inside loops or conditions. If you need that, extract a new component and move the state into it.
-  
-```js
-import React, { useState } from 'react';
-
-function Counter({initialCount}) {
-const [count, setCount] = useState(initialCount);
-return (
-  <div>
-    <p>You clicked {count} times</p>
-    <button onClick={() => setCount(count + 1)}>
-      Click me
-    </button>
-  </div>
-);
-}
-
-function MyComponent() {
-const items = [1, 2, 3, 4, 5];
-return (
-  <div>
-    {items.map((item, index) => (
-      <Counter key={index} initialCount={item} />
-    ))}
-  </div>
-);
-}
-```
-
-- In Strict Mode, React will call your initializer function twice in order to help you find accidental impurities. This is development-only behavior and does not affect production. If your initializer function is pure (as it should be), this should not affect the behavior. The result from one of the calls will be ignored.
-
-
-### Age will only be 43 rather than 45! This is because calling the set function does not update the age state variable in the already running code
-
-```js
-function handleClick() {
-setAge(age + 1); // setAge(42 + 1)
-setAge(age + 1); // setAge(42 + 1)
-setAge(age + 1); // setAge(42 + 1)
-}
-```
-
-###  (Solution) pass an updater function to setAge instead of the next state
-
-```js
-function handleClick() {
-  setAge(a => a + 1); // setAge(42 => 43)
-  setAge(a => a + 1); // setAge(43 => 44)
-  setAge(a => a + 1); // setAge(44 => 45)
-}
-```
-
-In React, state is considered read-only, so you should replace it rather than mutate your existing objects. For example, if you have a form object in state, don’t mutate it:
-
-```js
-// 🚩 Don't mutate an object in state like this:
-form.firstName = 'Taylor';
-```
-
-replace the whole object by creating a new one:
-
-```js
-// ✅ Replace state with a new object
-setForm({
-  ...form,
-  firstName: 'Taylor'
-});
-```
-
-
-### Resetting state with a key:
-
-You can reset a component’s state by passing a different key to a component. In this example, the Reset button changes the version state variable, which we pass as a key to the Form. When the key changes, React re-creates the Form component (and all of its children) from scratch, so its state gets reset.
-
-```js
-import { useState } from 'react';
-
-export default function App() {
-  const [version, setVersion] = useState(0);
-
-  function handleReset() {
-    setVersion(version + 1);
-  }
-
-  return (
-    <>
-      <button onClick={handleReset}>Reset</button>
-      <Form key={version} />
-    </>
-  );
-}
-
-function Form() {
-  const [name, setName] = useState('Taylor');
-
-  return (
-    <>
-      <input
-        value={name}
-        onChange={e => setName(e.target.value)}
-      />
-      <p>Hello, {name}.</p>
-    </>
-  );
-}
-```
+ - https://react.dev/reference/react/useState#updating-state-based-on-the-previous-state
+ - https://www.youtube.com/watch?v=O6P86uwfdR0
 
 ### useReducer
-
+ - https://react.dev/reference/react/useReducer
+ - https://www.youtube.com/watch?v=kK_Wqx3RnHk&t=100s
 
 
 
