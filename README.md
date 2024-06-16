@@ -9,18 +9,11 @@
 - [DOM](#dom)
 - [Render](#render)
 - [CLI Tools](#cli-tools) 
-  1. [Vite](#vite)
 - [JSX](#jsx)
 - [Class Components](#class-components)
 - [Life Cycle](#life-cycle)
 - [Hooks](#hooks)
-  - State Hooks
-  - Context Hooks
-  - Ref Hooks
-  - Effect Hooks
-  - Performance Hooks
-  - Other Hooks 
-  - Your own Hooks
+
 
   
 --- 
